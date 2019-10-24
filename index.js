@@ -38,4 +38,19 @@ server.put('/projects/:id', (req, res) => {
   return res.json(projects)
 })
 
+// Método DELETE que deleta o projeto com base no ID presente nos parâmetros da rota
+
+server.delete('/projects/:id', (req, res) => {
+  const {id} = req.params
+  console.log(`Deleting project number: ${id}`)
+
+  projects.forEach(project => {
+    if (project.id === id) {
+      projects.splice(project, 1)
+    }
+  })
+
+  res.send()
+})
+
 server.listen(3000)

@@ -13,6 +13,26 @@ const projects = [
   }
 ]
 
+function findIdProject(req, res, next) {
+  const { id } = req.params
+  const project = projects.find(proj => proj.id === id)
+
+  if (!project) {
+    res.status(404).json({ error: "Project not found" })
+  }
+
+  return next()
+}
+
+function numberOfRequests(req, res, next) {
+
+  console.count('Total de requisições até o momento')
+
+  next()
+}
+
+server.use(numberOfRequests)
+
 // Método POST que recebe um ID e um título vindos do corpo da requisição e os insere no array de projetos
 
 server.post('/projects', (req, res) => {
@@ -34,13 +54,13 @@ server.get('/projects', (req, res) => {
 
 // Método PUT que altera o 'title' do projeto com base no ID passado nos parâmetros da rota
 
-server.put('/projects/:id', (req, res) => {
+server.put('/projects/:id', findIdProject, (req, res) => {
   const { id } = req.params
   const { title } = req.body
   console.log(`Editing title from project number: ${id} to be ${title}`)
 
-  // A conferência do ID também pode ser feita percorrendo o array com um forEach, porém
-  // a função find faz a mesma coisa economizando linhas de código  
+  // A conferência do ID também pode ser feita percorrendo o array com um forEach(), porém
+  // a função find() faz a mesma coisa de forma mais simples, economizando linhas de código  
 
   const project = projects.find(proj => proj.id === id)
 
@@ -51,7 +71,7 @@ server.put('/projects/:id', (req, res) => {
 
 // Método DELETE que deleta o projeto com base no ID passado nos parâmetros da rota
 
-server.delete('/projects/:id', (req, res) => {
+server.delete('/projects/:id', findIdProject, (req, res) => {
   const { id } = req.params
   console.log(`Deleting project number: ${id}`)
 
@@ -64,7 +84,7 @@ server.delete('/projects/:id', (req, res) => {
 
 // Método POST para armazenar novas tarefas no array de tarefas com base no ID passado nos parâmetros da rota
 
-server.post('/projects/:id/tasks', (req, res) => {
+server.post('/projects/:id/tasks', findIdProject, (req, res) => {
   const { id } = req.params
   const { title } = req.body
 

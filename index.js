@@ -13,7 +13,7 @@ const projects = [
   }
 ]
 
-function findIdProject(req, res, next) {
+function findProjectFromId(req, res, next) {
   const { id } = req.params
   const project = projects.find(proj => proj.id === id)
 
@@ -54,7 +54,7 @@ server.get('/projects', (req, res) => {
 
 // Método PUT que altera o 'title' do projeto com base no ID passado nos parâmetros da rota
 
-server.put('/projects/:id', findIdProject, (req, res) => {
+server.put('/projects/:id', findProjectFromId, (req, res) => {
   const { id } = req.params
   const { title } = req.body
   console.log(`Editing title from project number: ${id} to be ${title}`)
@@ -71,7 +71,7 @@ server.put('/projects/:id', findIdProject, (req, res) => {
 
 // Método DELETE que deleta o projeto com base no ID passado nos parâmetros da rota
 
-server.delete('/projects/:id', findIdProject, (req, res) => {
+server.delete('/projects/:id', findProjectFromId, (req, res) => {
   const { id } = req.params
   console.log(`Deleting project number: ${id}`)
 
@@ -84,7 +84,7 @@ server.delete('/projects/:id', findIdProject, (req, res) => {
 
 // Método POST para armazenar novas tarefas no array de tarefas com base no ID passado nos parâmetros da rota
 
-server.post('/projects/:id/tasks', findIdProject, (req, res) => {
+server.post('/projects/:id/tasks', findProjectFromId, (req, res) => {
   const { id } = req.params
   const { title } = req.body
 

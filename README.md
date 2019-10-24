@@ -28,8 +28,4 @@ Aplicação para armazenar projetos e suas tarefas do zero utilizando [Express](
 
 - Middleware 2: global, imprime um (`console.log`) com a contagem de quantas requisições foram feitas na aplicação até então.
 
-## Licença
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
-
 ---

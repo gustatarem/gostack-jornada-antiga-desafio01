@@ -1,0 +1,17 @@
+{
+  "name": "gostack-desafio01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:gustatarem/gostack-desafio01.git",
+  "author": "Gustavo <gustavo.tatarem@saedigital.com.br>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}

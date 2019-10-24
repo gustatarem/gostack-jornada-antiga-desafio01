@@ -39,13 +39,14 @@ server.put('/projects/:id', (req, res) => {
   const { title } = req.body
   console.log(`Editing title from project number: ${id} to be ${title}`)
 
-  projects.forEach(project => {
-    if (project.id === id) {
-      project.title = title
-    }
-  })
+  // A conferência do ID também pode ser feita percorrendo o array com um forEach, porém
+  // a função find faz a mesma coisa economizando linhas de código  
 
-  return res.json(projects)
+  const project = projects.find(proj => proj.id === id)
+
+  project.title = title
+
+  return res.json(project)
 })
 
 // Método DELETE que deleta o projeto com base no ID passado nos parâmetros da rota
@@ -53,12 +54,6 @@ server.put('/projects/:id', (req, res) => {
 server.delete('/projects/:id', (req, res) => {
   const { id } = req.params
   console.log(`Deleting project number: ${id}`)
-
-  // projects.forEach(project => {
-  //   if (project.id === id) {
-  //     projects.splice(project, 1)
-  //   }
-  // })
 
   const project = projects.findIndex(proj => proj.id === id)
 

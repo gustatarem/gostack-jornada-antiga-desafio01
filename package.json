@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:gustatarem/gostack-desafio01.git",
-  "author": "Gustavo <gustavo.tatarem@saedigital.com.br>",
+  "author": "Gustavo <gus.tatarem@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js"

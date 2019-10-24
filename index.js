@@ -25,7 +25,6 @@ function findProjectFromId(req, res, next) {
 }
 
 function numberOfRequests(req, res, next) {
-
   console.count('Total de requisições até o momento')
 
   next()
